@@ -30,16 +30,17 @@
 }
 *, *::before, *::after { box-sizing: border-box; }
 html { overflow-x: clip; }
+@supports not (overflow: clip) { html, body, main, .player { overflow-x: hidden; } }
 html, body { background: var(--bg); color: var(--ink); }
-body { background:
-    radial-gradient(80% 45% at 50% -8%, rgba(255,255,255,.17), rgba(255,255,255,.04) 45%, transparent 65%),
+html { background: #050506; }
+body { background: transparent !important; }
+body::before { content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none; transform: translateZ(0); background: radial-gradient(80% 45% at 50% -8%, rgba(255,255,255,.17), rgba(255,255,255,.04) 45%, transparent 65%),
     linear-gradient(116deg, transparent 18%, rgba(255,255,255,.02) 28%, rgba(255,255,255,.085) 36%, rgba(255,255,255,.02) 41%, transparent 47%),
     linear-gradient(116deg, transparent 58%, rgba(255,255,255,.05) 64%, transparent 69%),
     radial-gradient(60% 40% at 50% 112%, rgba(255,255,255,.08), transparent 65%),
-    linear-gradient(180deg, #0a0a0c, #030304 55%, #070708);
-  background-attachment: fixed; }
+    linear-gradient(180deg, #0a0a0c, #030304 55%, #070708); }
 .title-xl { text-shadow: 0 0 0 transparent; }
-.gloss { position: fixed; inset: 0; z-index: 0; pointer-events: none; mix-blend-mode: screen;
+.gloss { position: fixed; inset: 0; z-index: 0; pointer-events: none;
   background: radial-gradient(520px 380px at var(--px, 70%) var(--py, 20%), rgba(255,255,255,.07), rgba(255,255,255,.02) 45%, transparent 70%); transition: background .08s linear; }
 body { margin: 0; font: 400 16px/1.6 var(--display); font-variation-settings: "wdth" 100; -webkit-font-smoothing: antialiased; min-height: 100vh; }
 h1, h2, h3, p, ul, ol, dl, dd, figure { margin: 0; padding: 0; }
@@ -164,11 +165,11 @@ body, main { overflow-x: clip; }
 .jcase { --glow: #6a3df0; position: relative; display: block; width: 100%; aspect-ratio: 1; border-radius: 3.5%;
   background: linear-gradient(135deg, rgba(255,255,255,.12), rgba(255,255,255,.015) 40%, rgba(255,255,255,.01) 60%, rgba(255,255,255,.07));
   box-shadow: 0 40px 60px -34px rgba(0,0,0,.9);
-  transform: perspective(1400px) rotateX(calc(var(--ty, 0) * -7deg)) rotateY(calc(var(--tx, 0) * 9deg)); transition: transform .25s linear; }
+  transform: perspective(1400px) rotateX(calc(var(--ty, 0) * -7deg)) rotateY(calc(var(--tx, 0) * 9deg));  }
 .halo { position: absolute; left: 57%; top: 52%; width: 74%; aspect-ratio: 1; transform: translate(-50%, -50%); border-radius: 50%; z-index: 0;
   background: radial-gradient(closest-side, var(--glow), transparent 75%); filter: blur(26px); opacity: calc(.4 + var(--near, 0) * .5); animation: breathe 5s ease-in-out infinite; }
 @keyframes breathe { 50% { opacity: calc(.42 + var(--near, 0) * .4); transform: translate(-50%, -50%) scale(1.07); } }
-.pdisc { position: absolute; left: 57%; top: 50%; width: 79%; aspect-ratio: 1; transform: translate(-50%, -50%) rotate(var(--spin, 0deg)); border-radius: 50%; overflow: hidden; z-index: 2;
+.pdisc { backface-visibility: hidden; -webkit-backface-visibility: hidden; position: absolute; left: 57%; top: 50%; width: 79%; aspect-ratio: 1; transform: translate(-50%, -50%) rotate(var(--spin, 0deg)); border-radius: 50%; overflow: hidden; z-index: 2;
   -webkit-mask: radial-gradient(circle, transparent 0 17.6%, #000 18%); mask: radial-gradient(circle, transparent 0 17.6%, #000 18%);
   box-shadow: 0 10px 24px -10px rgba(20,15,30,.5); }
 /* glossy red vinyl */
@@ -238,7 +239,7 @@ body, main { overflow-x: clip; }
 .jcase:hover .halo { opacity: .9; }
 
 /* ================= ABOUT ================= */
-.about { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.55fr) minmax(0, 1fr); gap: clamp(20px, 3.5vw, 56px); align-items: center; min-height: calc(100svh - 120px); }
+.about { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.55fr) minmax(0, 1fr); gap: clamp(20px, 3.5vw, 56px); align-items: center; min-height: calc(100vh - 120px); min-height: calc(100svh - 120px); }
 .about__kicker { grid-column: 1 / -1; text-align: center; color: var(--ink-2); font: 500 13px var(--mono); letter-spacing: .08em; }
 .col { display: grid; gap: 16px; align-content: center; }
 .col p { color: var(--ink-2); }
@@ -264,15 +265,21 @@ body, main { overflow-x: clip; }
 .facts dt { font: 500 10.5px var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); }
 .facts dd { font-weight: 600; font-variation-settings: "wdth" 108; }
 .hero { display: grid; justify-items: center; gap: 20px; }
-.hero .jcase { width: clamp(240px, min(100%, 470px, calc(100svh - 340px)), 470px); cursor: pointer; }
+.hero .jcase { width: clamp(240px, min(100%, 470px, calc(100vh - 340px)), 470px); width: clamp(240px, min(100%, 470px, calc(100svh - 340px)), 470px); cursor: pointer; }
 .hero__name { text-align: center; display: grid; gap: 18px; }
 .hero__title { font-size: clamp(2rem, 3.4vw, 3.3rem); }
 @media (min-width: 1001px) { .hero__title { white-space: nowrap; } }
 .hero__line { font: 500 12px var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-2); }
-.hero .spine { width: clamp(240px, min(100%, 470px, calc(100svh - 340px)), 470px); }
+.hero .spine { width: clamp(240px, min(100%, 470px, calc(100vh - 340px)), 470px); width: clamp(240px, min(100%, 470px, calc(100svh - 340px)), 470px); }
 .spine { display: flex; width: min(100%, 520px); height: 46px; border-radius: 6px; overflow: hidden; background: rgba(255,255,255,.04); color: var(--ink); box-shadow: inset 0 0 0 1px var(--line); }
 .spine span { display: grid; place-items: center; padding: 0 14px; white-space: nowrap; flex: none; font: 500 11px var(--mono); letter-spacing: .14em; }
 .spine span:nth-child(2) { display: flex; align-items: center; justify-content: center; flex: 1; font: 760 clamp(.8rem, 1.35vw, 1.12rem) var(--display); min-width: 0; font-variation-settings: "wdth" 120; letter-spacing: .02em; text-transform: uppercase; border-inline: 1px solid var(--line); }
+.spine { container-type: inline-size; }
+.spine span:nth-child(2) { overflow: hidden; }
+@supports (width: 1cqi) {
+  .spine span { padding: 0 clamp(6px, 2.6cqi, 14px); font-size: clamp(8px, 2.4cqi, 11px); letter-spacing: clamp(.04em, .5cqi, .14em); }
+  .spine span:nth-child(2) { font-size: clamp(.58rem, 4cqi, 1.12rem); letter-spacing: 0; padding: 0 4px; }
+}
 .spine span:nth-child(2) em { font-style: normal; color: var(--a1); font-weight: 400; margin: 0 .35em; }
 
 /* ================= WORKS ================= */
@@ -673,15 +680,22 @@ body, main { overflow-x: clip; }
   $$("[data-pal]").forEach((el) => { el.innerHTML = inner(PAL[el.dataset.pal]); });
 
   /* the liquid: one WebGL program paints every visible disc */
+  const TOUCH = matchMedia("(hover: none), (pointer: coarse)").matches;
   const Liquid = (() => {
     const S = 512, cv = document.createElement("canvas");
+    let CAP = TOUCH ? 384 : 512, PER_TICK = TOUCH ? 2 : 99;
+    const slow = () => { CAP = CAP > 384 ? 384 : CAP > 256 ? 256 : 192; PER_TICK = 1; };
+    let lost = false, rr = 0;
+    cv.addEventListener("webglcontextlost", (e) => { e.preventDefault(); lost = true; });
     cv.width = cv.height = S;
     let gl = null;
     try { gl = cv.getContext("webgl", { preserveDrawingBuffer: true, antialias: false }); } catch (e) { gl = null; }
-    if (!gl) return { render() {} };
+    if (!gl) return { render() {}, slow() {} };
     const vs = "attribute vec2 p;void main(){gl_Position=vec4(p,0.,1.);}";
-    const fs = "precision highp float;uniform vec2 r;uniform float t,seed,band,mode;uniform vec3 c0,c1,c2,c3,c4;" +
-      "float h(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7))+seed*13.7)*43758.5453);}" +
+    const fs = "#ifdef GL_FRAGMENT_PRECISION_HIGH\nprecision highp float;\n#else\nprecision mediump float;\n#endif\n" +
+      "uniform vec2 r;uniform float t,seed,band,mode;uniform vec3 c0,c1,c2,c3,c4;\n" +
+      "#ifdef GL_FRAGMENT_PRECISION_HIGH\nfloat h(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7))+seed*13.7)*43758.5453);}\n" +
+      "#else\nfloat h(vec2 p){vec3 p3=fract(vec3(p.xyx+seed*.37)*.1031);p3+=dot(p3,p3.yzx+33.33);return fract((p3.x+p3.y)*p3.z);}\n#endif\n" +
       "float n(vec2 p){vec2 i=floor(p),f=fract(p);f=f*f*f*(f*(f*6.-15.)+10.);return mix(mix(h(i),h(i+vec2(1,0)),f.x),mix(h(i+vec2(0,1)),h(i+vec2(1,1)),f.x),f.y);}" +
       "float fbm(vec2 p){float v=0.,a=.55;for(int i=0;i<3;i++){v+=a*n(p);p=p*1.9+vec2(1.7,9.2);a*=.45;}return v;}" +
       "vec3 pal(float x){x=fract(x)*5.;if(x<1.)return mix(c0,c1,smoothstep(0.,1.,x));if(x<2.)return mix(c1,c2,smoothstep(0.,1.,x-1.));if(x<3.)return mix(c2,c3,smoothstep(0.,1.,x-2.));if(x<4.)return mix(c3,c4,smoothstep(0.,1.,x-3.));return mix(c4,c0,smoothstep(0.,1.,x-4.));}" +
@@ -715,7 +729,7 @@ body, main { overflow-x: clip; }
     const sh = (type, src) => { const o = gl.createShader(type); gl.shaderSource(o, src); gl.compileShader(o); return o; };
     const pr = gl.createProgram();
     gl.attachShader(pr, sh(gl.VERTEX_SHADER, vs)); gl.attachShader(pr, sh(gl.FRAGMENT_SHADER, fs)); gl.linkProgram(pr);
-    if (!gl.getProgramParameter(pr, gl.LINK_STATUS)) return { render() {} };
+    if (!gl.getProgramParameter(pr, gl.LINK_STATUS)) { document.documentElement.classList.add("no-gl"); return { render() {}, slow() {} }; }
     gl.useProgram(pr);
     gl.bindBuffer(gl.ARRAY_BUFFER, gl.createBuffer());
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
@@ -723,27 +737,34 @@ body, main { overflow-x: clip; }
     const U = {}; ["r", "t", "seed", "band", "mode", "c0", "c1", "c2", "c3", "c4"].forEach((k) => (U[k] = gl.getUniformLocation(pr, k)));
     let lastDraw = 0;
     function render(now, dt) {
-      if (now - lastDraw < 33) return;
-      const step = Math.min(.1, (now - lastDraw) / 1000);
+      if (lost || now - lastDraw < 33) return;
       lastDraw = now;
+      const vis = [];
       document.querySelectorAll("canvas.liquid").forEach((c) => {
         const rc = c.getBoundingClientRect();
-        if (!rc.width || rc.bottom < 0 || rc.top > innerHeight) return;
+        if (rc.width && rc.bottom > 0 && rc.top < innerHeight) vis.push([c, rc]);
+      });
+      const n = Math.min(PER_TICK, vis.length);
+      for (let j = 0; j < n; j++) {
+        const [c, rc] = vis[(rr + j) % vis.length];
+        const step = Math.max(0, Math.min(.12, (now - (c._last || now - 33)) / 1000));
+        c._last = now;
         if (!c._cfg) {
           c._cfg = { cols: c.dataset.c.split(",").map((h) => hexRGB(h).map((v) => v / 255)), band: +c.dataset.band, seed: +c.dataset.seed, mode: +(c.dataset.mode || 0) };
           c._t = c._cfg.seed * 10; c._ctx = c.getContext("2d");
         }
-        const size = Math.max(64, Math.min(S, Math.round(rc.width * Math.min(2, devicePixelRatio || 1) / 32) * 32));
+        const size = Math.max(64, Math.min(CAP, Math.round(rc.width * Math.min(2, devicePixelRatio || 1) / 32) * 32));
         if (c.width !== size) { c.width = c.height = size; }
-        c._t += step * (reduce ? 0 : .35 + (c._boost || 0) * 1.6);
+        c._t += step * (reduce ? .1 : .35 + (c._boost || 0) * 1.6);
         gl.viewport(0, 0, size, size);
         gl.uniform2f(U.r, size, size); gl.uniform1f(U.t, c._t); gl.uniform1f(U.seed, c._cfg.seed); gl.uniform1f(U.band, c._cfg.band); gl.uniform1f(U.mode, c._cfg.mode);
         c._cfg.cols.forEach((col, i) => gl.uniform3f(U["c" + i], col[0], col[1], col[2]));
         gl.drawArrays(gl.TRIANGLES, 0, 3);
         c._ctx.drawImage(cv, 0, S - size, size, size, 0, 0, size, size);
-      });
+      }
+      rr = vis.length ? (rr + n) % vis.length : 0;
     }
-    return { render };
+    return { render, slow };
   })();
 
   /* loader: first visit per session only */
@@ -894,39 +915,53 @@ body, main { overflow-x: clip; }
 
   /* one loop: cases tilt toward the cursor, glare follows, discs spin up when you get close */
   const ptr = { x: -1e4, y: -1e4, on: false };
-  addEventListener("pointermove", (e) => { if (e.pointerType === "mouse") { ptr.x = e.clientX; ptr.y = e.clientY; ptr.on = true; document.documentElement.style.setProperty("--px", e.clientX + "px"); document.documentElement.style.setProperty("--py", e.clientY + "px"); } }, { passive: true });
+  addEventListener("pointermove", (e) => { if (e.pointerType === "mouse") { ptr.touch = false; ptr.x = e.clientX; ptr.y = e.clientY; ptr.on = true; document.documentElement.style.setProperty("--px", e.clientX + "px"); document.documentElement.style.setProperty("--py", e.clientY + "px"); } }, { passive: true });
   document.addEventListener("pointerleave", () => (ptr.on = false));
+  document.addEventListener("mouseout", (e) => { if (!e.relatedTarget) ptr.on = false; });
+  addEventListener("blur", () => (ptr.on = false));
   /* touch screens (Android + iOS): the case follows the finger, and idles with a gentle sway when untouched */
-  const COARSE = matchMedia("(hover: none), (pointer: coarse)").matches;
-  const touchAt = (e) => { const t = e.touches && e.touches[0]; if (!t) return; ptr.x = t.clientX; ptr.y = t.clientY; ptr.on = true; document.documentElement.style.setProperty("--px", t.clientX + "px"); document.documentElement.style.setProperty("--py", t.clientY + "px"); };
-  addEventListener("touchstart", touchAt, { passive: true });
-  addEventListener("touchmove", touchAt, { passive: true });
-  addEventListener("touchend", () => (ptr.on = false), { passive: true });
-  addEventListener("touchcancel", () => (ptr.on = false), { passive: true });
+  const COARSE = TOUCH;
+  addEventListener("pointerdown", (e) => {
+    if (e.pointerType === "mouse") return;
+    const jc = e.target.closest && e.target.closest(".jcase");
+    ptr.touch = true; ptr.target = jc || null; ptr.on = !!jc; ptr.x = e.clientX; ptr.y = e.clientY;
+    if (jc) { const s0 = st.get(jc); if (s0) s0.poke = 1; }
+  }, { passive: true });
+  addEventListener("pointermove", (e) => { if (e.pointerType !== "mouse" && ptr.touch && ptr.on) { ptr.x = e.clientX; ptr.y = e.clientY; } }, { passive: true });
+  ["pointerup", "pointercancel"].forEach((ev) => addEventListener(ev, (e) => { if (e.pointerType !== "mouse") { ptr.on = false; ptr.target = null; } }, { passive: true }));
   const st = new Map();
   function react(jc, rad, k, dt, spinBase) {
     const r = jc.getBoundingClientRect();
     if (r.bottom < 0 || r.top > innerHeight) return;
     const cx = r.left + r.width / 2, cy = r.top + r.height / 2;
     const dx = Math.max(-1, Math.min(1, (ptr.x - cx) / (r.width / 2))), dy = Math.max(-1, Math.min(1, (ptr.y - cy) / (r.height / 2)));
-    const p = ptr.on ? Math.max(0, 1 - Math.hypot((ptr.x - cx) / (r.width / 2), (ptr.y - cy) / (r.height / 2)) / rad) : 0;
-    const s = st.get(jc) || { x: 0, y: 0, p: 0, spin: Math.random() * 40 - 20, la: 200, ph: Math.random() * 6.283 };
-    const driven = ptr.on && p > .02, idle = COARSE && !driven, tt = performance.now() / 1000;
+    const mine = ptr.on && (!ptr.touch || ptr.target === jc);
+    const p = mine ? Math.max(0, 1 - Math.hypot((ptr.x - cx) / (r.width / 2), (ptr.y - cy) / (r.height / 2)) / rad) : 0;
+    const s = st.get(jc) || { x: 0, y: 0, p: 0, spin: Math.random() * 40 - 20, vel: 0, poke: 0, la: 200, ph: Math.random() * 6.283 };
+    const driven = mine && p > .02, idle = COARSE && !driven, tt = performance.now() / 1000;
     const ix = idle ? Math.sin(tt * .9 + s.ph) * .6 : 0, iy = idle ? Math.cos(tt * .7 + s.ph * 1.3) * .5 : 0;
     s.x += ((driven ? dx * p : ix) - s.x) * k; s.y += ((driven ? dy * p : iy) - s.y) * k; s.p += (p - s.p) * k;
-    s.spin += (spinBase + s.p * 220) * dt;
-    if (s.p < .03 && !spinBase) s.spin += (Math.round(s.spin / 360) * 360 - s.spin) * k * .4;
-    const target = ptr.on && p > 0 ? Math.atan2(ptr.y - cy, ptr.x - cx) * 180 / Math.PI + 90 : idle ? Math.atan2(iy, ix) * 180 / Math.PI + 90 : 200;
+    s.poke = Math.max(0, (s.poke || 0) - dt * 1.1);
+    const want = (COARSE ? 16 : 0) + s.p * 220 + s.poke * 480 + spinBase;
+    s.vel = (s.vel || 0) + (want - (s.vel || 0)) * (1 - Math.exp(-dt * (want > (s.vel || 0) ? 4 : 1.4)));
+    s.spin = (s.spin + s.vel * dt) % 360;
+    const target = mine && p > 0 ? Math.atan2(ptr.y - cy, ptr.x - cx) * 180 / Math.PI + 90 : idle ? Math.atan2(iy, ix) * 180 / Math.PI + 90 : 200;
     s.la += (((target - s.la + 540) % 360) - 180) * k;
     st.set(jc, s);
     jc.style.setProperty("--la", s.la.toFixed(1) + "deg"); jc.style.setProperty("--tx", s.x.toFixed(3)); jc.style.setProperty("--ty", s.y.toFixed(3)); jc.style.setProperty("--near", s.p.toFixed(3));
     const d = jc.querySelector(".pdisc");
     if (d) { d.style.setProperty("--spin", s.spin.toFixed(1) + "deg"); d.style.setProperty("--la", s.la.toFixed(1) + "deg"); }
-    const lq = jc.querySelector("canvas.liquid"); if (lq) lq._boost = s.p;
+    const lq = jc.querySelector("canvas.liquid"); if (lq) lq._boost = Math.max(s.p, s.poke * .8);
   }
   let last = performance.now();
-  function frame(now) {
-    const dt = Math.min(.05, (now - last) / 1000); last = now;
+  let ema = 16, slowFor = 0, startT = performance.now();
+  function frame() {
+    /* page clock, not the rAF timestamp: some browsers hand out timestamps that run behind it */
+    const now = performance.now();
+    const raw = Math.max(0, now - last);
+    const dt = Math.min(.05, raw / 1000); last = now;
+    /* adaptive quality: if this device cannot keep up, discs drop to a lighter resolution */
+    if (raw < 1000) { ema = ema * .94 + raw * .06; if (now - startT > 4000 && ema > 45) { slowFor += raw; if (slowFor > 2500) { Liquid.slow(); slowFor = 0; ema = 16; } } else slowFor = 0; }
     const k = 1 - Math.exp(-dt * 7);
     boost = Math.max(0, boost - dt * 1000);
     if (!reduce) {
@@ -939,6 +974,7 @@ body, main { overflow-x: clip; }
     Liquid.render(now, dt);
     requestAnimationFrame(frame);
   }
+  addEventListener("hashchange", () => { ema = 16; slowFor = 0; startT = performance.now(); });
   requestAnimationFrame(frame);
   route();
 })();
