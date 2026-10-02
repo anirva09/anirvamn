@@ -74,6 +74,7 @@ main { padding-inline: var(--gutter); }
 @keyframes enter { from { opacity: 0; transform: translateY(16px) scale(.985); } }
 .title-xl { font-size: clamp(2.6rem, 6vw, 5.4rem); line-height: .92; font-weight: 780; font-variation-settings: "wdth" 116; letter-spacing: -.035em; text-wrap: balance; }
 .lead { color: var(--ink-2); font-size: clamp(1rem, 1.3vw, 1.15rem); max-width: 46ch; }
+.ico { width: 1em; height: 1em; display: inline-block; vertical-align: -.125em; flex: none; }
 .btn { display: inline-flex; align-items: center; gap: 10px; padding: 12px 18px; border-radius: 999px; text-decoration: none; font: 500 12px var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--bg); background: var(--ink); transition: transform .3s var(--spring); }
 .btn:hover { transform: translateY(-2px); }
 .btn--ghost { color: var(--ink); background: var(--card); box-shadow: inset 0 0 0 1px var(--line); }
@@ -423,7 +424,7 @@ body, main { overflow-x: clip; }
           <div><dt>Experience</dt><dd>Data &amp; Business Operations Intern, T-Home FinTech · Jul–Aug 2026</dd></div>
           <div><dt>Looking for</dt><dd>Software development · Data analytics · AI prompting</dd></div>
         </dl>
-        <div class="btns"><a class="btn" href="#works">Play my works ▶</a></div>
+        <div class="btns"><a class="btn" href="#works">Play my works <svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></a></div>
       </div>
     </div>
   </section>
@@ -434,9 +435,9 @@ body, main { overflow-x: clip; }
       <div class="spec" id="spec" aria-live="polite"></div>
       <div class="player" id="player">
         <div class="player__nav">
-          <button class="round" type="button" id="prev" aria-label="Previous disc">⏮</button>
+          <button class="round" type="button" id="prev" aria-label="Previous disc"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M18 5v14l-9-7zM5 5h2v14H5z" fill="currentColor"/></svg></button>
           <span class="hint">Click the disc to open it</span>
-          <button class="round" type="button" id="next" aria-label="Next disc">⏭</button>
+          <button class="round" type="button" id="next" aria-label="Next disc"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 5v14l9-7zM17 5h2v14h-2z" fill="currentColor"/></svg></button>
         </div>
       </div>
     </div>
@@ -472,10 +473,10 @@ body, main { overflow-x: clip; }
         <p class="lead">I'm open to internships and roles in software development, data analytics and AI. Email is the quickest way to reach me.</p>
         <div class="links">
           <div class="row"><span class="n">01</span><span class="k">Email</span><span class="v" id="email">anirvavjit2023@gmail.com</span><button class="copy" type="button" id="copy-email">Copy</button></div>
-          <a href="https://www.linkedin.com/in/anirva-m" target="_blank" rel="noopener"><span class="n">02</span><span class="k">LinkedIn</span><span class="v">in/anirva-m</span><span class="go" aria-hidden="true">↗</span></a>
-          <a href="https://github.com/anirva09" target="_blank" rel="noopener"><span class="n">03</span><span class="k">GitHub</span><span class="v">anirva09</span><span class="go" aria-hidden="true">↗</span></a>
-          <a href="https://x.com/anirva09" target="_blank" rel="noopener"><span class="n">04</span><span class="k">X</span><span class="v">@anirva09</span><span class="go" aria-hidden="true">↗</span></a>
-          <a href="assets/Anirva_Manchikatla_Resume.pdf" target="_blank" rel="noopener" download="Anirva_Manchikatla_Resume.pdf"><span class="n">05</span><span class="k">Résumé</span><span class="v">Download PDF</span><span class="go" aria-hidden="true">↗</span></a>
+          <a href="https://www.linkedin.com/in/anirva-m" target="_blank" rel="noopener"><span class="n">02</span><span class="k">LinkedIn</span><span class="v">in/anirva-m</span><span class="go" aria-hidden="true"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 17 17 7M8 7h9v9" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+          <a href="https://github.com/anirva09" target="_blank" rel="noopener"><span class="n">03</span><span class="k">GitHub</span><span class="v">anirva09</span><span class="go" aria-hidden="true"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 17 17 7M8 7h9v9" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+          <a href="https://x.com/anirva09" target="_blank" rel="noopener"><span class="n">04</span><span class="k">X</span><span class="v">@anirva09</span><span class="go" aria-hidden="true"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 17 17 7M8 7h9v9" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+          <a href="assets/Anirva_Manchikatla_Resume.pdf" target="_blank" rel="noopener" download="Anirva_Manchikatla_Resume.pdf"><span class="n">05</span><span class="k">Résumé</span><span class="v">Download PDF</span><span class="go" aria-hidden="true"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 17 17 7M8 7h9v9" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
         </div>
       </div>
     </div>
@@ -798,7 +799,7 @@ body, main { overflow-x: clip; }
         <div><span>A2</span><dt>Genre</dt><dd>${p.type}</dd></div>
         <div><span>A3</span><dt>Stack</dt><dd>${p.stack.slice(0, 4).join(", ")}</dd></div>
       </dl>
-      <div class="btns"><a class="btn" href="#work-${p.slug}" data-open>Open disc ▶</a>${p.live ? `<a class="btn btn--ghost" href="${p.live}" target="_blank" rel="noopener">Live ↗</a>` : ""}<a class="btn btn--ghost" href="${p.repo}" target="_blank" rel="noopener">GitHub ↗</a></div></div>`;
+      <div class="btns"><a class="btn" href="#work-${p.slug}" data-open>Open disc <svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></a>${p.live ? `<a class="btn btn--ghost" href="${p.live}" target="_blank" rel="noopener">Live <svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 17 17 7M8 7h9v9" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>` : ""}<a class="btn btn--ghost" href="${p.repo}" target="_blank" rel="noopener">GitHub <svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 17 17 7M8 7h9v9" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div></div>`;
   }
   let opening = false;
   function openProject(i) {
@@ -855,7 +856,7 @@ body, main { overflow-x: clip; }
           <p class="label">Disc ${pad(i + 1)} · ${p.type} · ${p.role} · ${p.year}</p>
           <h2 class="title-xl">${p.name}</h2>
           <p class="lead">${p.tag}</p>
-          <div class="btns">${p.live ? `<a class="btn" href="${p.live}" target="_blank" rel="noopener">Visit live ↗</a>` : ""}<a class="btn ${p.live ? "btn--ghost" : ""}" href="${p.repo}" target="_blank" rel="noopener">GitHub ↗</a></div>
+          <div class="btns">${p.live ? `<a class="btn" href="${p.live}" target="_blank" rel="noopener">Visit live <svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 17 17 7M8 7h9v9" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>` : ""}<a class="btn ${p.live ? "btn--ghost" : ""}" href="${p.repo}" target="_blank" rel="noopener">GitHub <svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 17 17 7M8 7h9v9" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
         </div>
       </header>
       <dl class="cs__stats">${st.stats.map(([n, l]) => `<div><dt>${n}</dt><dd>${l}</dd></div>`).join("")}</dl>
@@ -868,7 +869,7 @@ body, main { overflow-x: clip; }
         ${frameHTML(p.shots[1], p)}
       </section>
       <section class="cs__result"><p class="cs__k">03 · The result</p><p class="cs__big">${st.result}</p>${p.note ? `<p class="note-sm">${p.note}</p>` : ""}</section>
-      <a class="cs__next" href="#work-${next.slug}"><span class="label">Next disc</span><strong>${next.name}</strong><span class="cs__arrow">⏭</span></a>
+      <a class="cs__next" href="#work-${next.slug}"><span class="label">Next disc</span><strong>${next.name}</strong><span class="cs__arrow"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 5v14l9-7zM17 5h2v14h-2z" fill="currentColor"/></svg></span></a>
     </article>`;
   }
 
